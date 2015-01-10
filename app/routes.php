@@ -13,6 +13,6 @@
 
 Route::get('/', function()
 {	
-	return 'comming soon!';
+	return 'hello xiaowei!';
 	// return View::make('hello');
 });
