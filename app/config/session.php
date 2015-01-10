@@ -16,7 +16,7 @@ return array(
 	|
 	*/
 
-	'driver' => 'file',
+	'driver' => 'memcached',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -29,7 +29,7 @@ return array(
 	|
 	*/
 
-	'lifetime' => 120,
+	'lifetime' => 10080, // seven days
 
 	'expire_on_close' => false,
 
@@ -96,7 +96,7 @@ return array(
 	|
 	*/
 
-	'cookie' => 'laravel_session',
+	'cookie' => '_session_id',
 
 	/*
 	|--------------------------------------------------------------------------

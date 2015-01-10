@@ -26,7 +26,7 @@ return array(
 	|
 	*/
 
-	'url' => 'http://localhost',
+	'url' => 'http://xiaowei.com',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -78,7 +78,7 @@ return array(
 	|
 	*/
 
-	'key' => 'YourSecretKey!!!',
+	'key' => 'VBO2o2ZnReEPNSuiGAMDGd61suPVuATU',
 
 	'cipher' => MCRYPT_RIJNDAEL_128,
 
