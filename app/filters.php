@@ -22,6 +22,48 @@ App::after(function($request, $response)
 	//
 });
 
+Route::filter('api.logs', function()
+{
+	// $current_version = Route::getRequestedVersion();
+	// $device = Input::get("device","default");
+	// $user_id = Auth::user()?Auth::user()->id:0;
+	// $access_token = Input::get("access_token","");
+	// $data = [
+	// 	'user_id'=>$user_id,
+	// 	'device'=>$device,
+	// 	'uri'=>$route->uri(),
+	// 	'method'=>$route->getMethods()[0],
+	// 	'domain'=>$route->domain(),
+	// 	'prefix'=>strval($route->getPrefix()),
+	// 	'action_name'=>$route->getActionName(),
+	// 	'version'=>$current_version,
+	// 	'access_token'=>$access_token,
+	// 	'params'=>json_encode(Input::except("device","access_token")),
+	// 	'client_ip' => Request::ip(),
+	// ];
+	// ApiLogHistory::add($data);
+});
+
+Route::filter('auth.app', function()
+{
+	if($access_token = Input::header('access-token'))
+	{
+		Session::setId($access_token);
+		Session::start();
+	}
+	else
+	{
+		return result(false, '参数无效: access-token');
+		// return Response::json(result(false, '参数无效: access-token'));
+	}
+
+	if ( ! Sentry::check())
+	{
+		return result(false, '请登录', 401);
+	}
+
+});
+
 /*
 |--------------------------------------------------------------------------
 | Authentication Filters
