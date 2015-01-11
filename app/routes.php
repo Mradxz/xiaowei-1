@@ -11,6 +11,8 @@
 |
 */
 
+require app_path().'/api_routes.php';
+
 Route::get('/', function()
 {	
 	return 'hello xiaowei!';
