@@ -8,7 +8,7 @@
 @task('migrate')
 	echo "migrate task ================="
 	cd /data/website/xiaowei
-    php artisan migrate
+    php artisan migrate --force
 @endtask
 
 @task('composer')
