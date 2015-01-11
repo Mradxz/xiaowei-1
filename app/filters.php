@@ -46,16 +46,11 @@ Route::filter('api.logs', function()
 
 Route::filter('auth.app', function()
 {
-	if($access_token = Input::header('access-token'))
-	{
-		Session::setId($access_token);
-		Session::start();
-	}
-	else
-	{
+	if(! $access_token = Input::header('access-token'))
 		return result(false, '参数无效: access-token');
-		// return Response::json(result(false, '参数无效: access-token'));
-	}
+
+	Session::setId($access_token);
+	Session::start();
 
 	if ( ! Sentry::check())
 	{

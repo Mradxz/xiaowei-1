@@ -17,7 +17,7 @@ Route::api(['version' => 'v1', 'before' => 'api.logs', "prefix" => "api/app", 'n
 	// 不验证方法
 	Route::group([], function ()
 	{
-        Route::post('auth/login', 'AuthController@login');
+        Route::post('users/login', 'UsersController@login');
         Route::post('users/register', 'UsersController@register');
     });
 

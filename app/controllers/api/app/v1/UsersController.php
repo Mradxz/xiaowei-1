@@ -1,6 +1,6 @@
 <?php namespace api\app\v1;
 
-use Input, Sentry;
+use Input, User, Sentry, Session;
 
 class UsersController extends \BaseController {
 
@@ -16,6 +16,33 @@ class UsersController extends \BaseController {
 		return result(true, compact('user'));
 	}
 
+	/**
+	 * 登录
+	 * @return [type] [description]
+	 */
+	public function login()
+	{
+		// Login credentials
+	    $credentials = array(
+	        'phone'    => Input::get('phone', ''),
+	        'password' => Input::get('password', ''),
+	    );
+
+	    // 重置 Session ID
+	    Session::setId(null);
+	    
+	    // Authenticate the user
+	    $user = Sentry::authenticate($credentials, false);
+
+		$access_token = Session::getId();
+
+		return result(true, compact('access_token'));
+	}
+
+	/**
+	 * 注册
+	 * @return [type] [description]
+	 */
 	public function register()
 	{
 
@@ -32,7 +59,7 @@ class UsersController extends \BaseController {
 	    // Assign the group to the user
 	    $user->addGroup($group);
 
-	    return result(true, compact('user'));
+	    return $this->login();
 	}
 
 	/**
