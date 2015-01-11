@@ -26,10 +26,11 @@ class UsersController extends \BaseController {
 	    ));
 
 	    // Find the group using the group id
-	    $adminGroup = Sentry::findGroupById(1);
+	    // id:2 为普通用户组
+	    $group = Sentry::findGroupById(2);
 
 	    // Assign the group to the user
-	    $user->addGroup($adminGroup);
+	    $user->addGroup($group);
 
 	    return result(true, compact('user'));
 	}
